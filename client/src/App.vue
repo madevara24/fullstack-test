@@ -31,11 +31,11 @@
     </v-app-bar>
 
     <v-main>
-        <v-content>
+        <v-container>
             <router-view>
 
             </router-view>
-        </v-content>
+        </v-container>
     </v-main>
 </v-app>
 </template>
