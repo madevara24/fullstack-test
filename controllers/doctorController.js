@@ -1,6 +1,4 @@
 const Doctor = require('../models/doctor');
-const Hospital = require('../models/hospital');
-const Schedule = require('../models/schedule');
 
 const doctor_index = (req, res) => {
     const param = req.query.search.toString()
