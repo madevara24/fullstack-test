@@ -1,9 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-var db = require('node-mysql');
-var DB = db.DB;
-var BaseRow = db.Row;
-var BaseTable = db.Table;
 const doctorRoutes = require('./routes/doctorRoutes');
 const hospitalRoutes = require('./routes/hospitalRoutes');
 const scheduleRoutes = require('./routes/scheduleRoutes');
@@ -16,6 +12,12 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const app = express();
 app.use(express.json());
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 //READ Request Handlers
 app.get('/api', (req, res) => {
@@ -32,5 +34,5 @@ app.use('/api/hospitals', hospitalRoutes);
 app.use('/api/schedules', scheduleRoutes);
 
 //PORT ENVIRONMENT VARIABLE
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 app.listen(port, () => console.log(`Listening on port ${port}..`));

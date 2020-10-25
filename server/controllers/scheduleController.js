@@ -2,7 +2,7 @@ const Schedule = require('../models/schedule');
 
 const schedule_index = (req, res) => {
     const param = req.query.search.toString()
-    Schedule.find({ name: new RegExp(param, 'i')})
+    Schedule.find({ doctor: new RegExp(param, 'i')})
     .then(result => {
         res.send(result);
     })
